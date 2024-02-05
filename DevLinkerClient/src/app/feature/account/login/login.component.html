@@ -1,0 +1,45 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>Please, Sign In</mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput
+                   formControlName="username" />
+            @if (form.get('username')?.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
+            @if (form.get('username')?.hasError('email')) {
+            <mat-error>Wrong <strong>email</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput
+                   formControlName="password"
+                   type="password" />
+            @if (form.get('password')?.hasError('required')) {
+            <mat-error>Password is <strong>required</strong></mat-error>
+            }
+            @if (form.get('password')?.hasError('minlength')
+            || form.get('password')?.hasError('maxlength')) {
+            <mat-error>Password must be between <strong>6</strong> and <strong>16</strong> characters </mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </form>
+      <div>
+        <button mat-flat-button
+                color="primary"
+                type="button"
+                (click)="loginUser()">
+          Sign In
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

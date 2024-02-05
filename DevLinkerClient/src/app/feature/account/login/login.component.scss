@@ -1,0 +1,25 @@
+mat-card {
+  align-items: center;
+  width: 400px;
+  margin-top: 50px;
+
+  mat-card-header {
+    padding: 20px;
+    font-size: 24px;
+  }
+
+  mat-form-field {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin-top: 25px;
+}

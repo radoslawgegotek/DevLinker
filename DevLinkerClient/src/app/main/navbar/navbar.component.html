@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+  <button mat-mini-fab
+          (click)="toggleSideBar()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-fab
+          extended
+          color="accent"
+          routerLink="/">
+    <mat-icon>home</mat-icon>
+    <span>DevLinker</span>
+  </button>
+  <span class="example-spacer"></span>
+
+  @if(this.authService.user$ | async; as userInfo) {
+  <span>{{userInfo.email}}</span>
+  <button mat-icon-button
+          extended
+          color="info"
+          [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      Profile
+    </button>
+    <button mat-menu-item
+            (click)="singOut()">
+      <mat-icon>exit_to_app</mat-icon>
+      Sign out
+    </button>
+  </mat-menu>
+  } @else {
+  <button mat-fab
+          color="accent"
+          extended
+          routerLink="account/login">
+    <mat-icon>person_add</mat-icon>
+    Sign In
+  </button>
+  }
+
+  <button mat-icon-button
+          (click)="toggleTheme()">
+    @if (theme === 'theme--light') {
+    <mat-icon>dark_mode</mat-icon>
+    }
+    @if (theme === 'theme--dark') {
+    <mat-icon>light_mode</mat-icon>
+    }
+  </button>
+</mat-toolbar>
