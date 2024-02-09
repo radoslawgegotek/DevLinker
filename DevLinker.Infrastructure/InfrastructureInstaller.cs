@@ -35,8 +35,17 @@ namespace DevLinker.Infrastructure
 			.AddEntityFrameworkStores<DevLinkerContext>()
 			.AddDefaultTokenProviders();
 
-			//Repositories
-			services.AddScoped<ISqlConnectionFactory, SqlConnectionFactory>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    context.Response.StatusCode = 401;
+                    return Task.CompletedTask;
+                };
+            });
+
+            //Repositories
+            services.AddScoped<ISqlConnectionFactory, SqlConnectionFactory>();
 			services.AddScoped<IIssueRepository, IssueRepository>();
 			services.AddScoped<IIssueMemberRepository, IssueMemberRepository>();
 			services.AddScoped<IWorkspaceRepository, WorkspaceRepository>();
