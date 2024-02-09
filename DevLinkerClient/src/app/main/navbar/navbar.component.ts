@@ -3,6 +3,7 @@ import { AuthService } from "../../core/auth/auth.service";
 import { AsyncPipe } from "@angular/common";
 import { Router, RouterLink } from "@angular/router";
 import { MaterialModule } from '../../shared/material.module';
+import { LoaderService } from '../../core/services/loader.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +24,8 @@ export class NavbarComponent {
 
   constructor(
     public authService: AuthService,
-    private _router: Router) {
+    private _router: Router,
+    public loaderService: LoaderService) {
   }
 
   singOut() {
